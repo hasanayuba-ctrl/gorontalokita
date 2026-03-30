@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<section class="content-wrap">
+  <div class="container">
+    <div class="section-head">
+      <h2>{{ page.title }}</h2>
+    </div>
+    <div class="content-grid">
+      <div class="post-list">
+        {% assign cat_posts = site.posts | where_exp: "post", "post.categories contains page.category" %}
+        {% for post in cat_posts %}
+        <a href="{{ post.url | relative_url }}" class="post-card">
+          {% assign colors = "linear-gradient(135deg,#E8F5ED,#d4e8da)|linear-gradient(135deg,#C75B3F,#D4A843)|linear-gradient(135deg,#2A8B7A,#1A5C3A)|linear-gradient(135deg,#D4A843,#e0c070)|linear-gradient(135deg,#3B6FB5,#5a8fd4)|linear-gradient(135deg,#1A5C3A,#2A8B7A)" | split: "|" %}
+          {% assign ci = forloop.index0 | modulo: 6 %}
+          {% if post.cover %}
+          <img src="{{ post.cover | relative_url }}" alt="" class="post-card-img">
+          {% else %}
+          <div class="post-card-img-ph" style="background:{{ colors[ci] }}"></div>
+          {% endif %}
+          <div class="post-card-body">
+            {% assign pcat = post.categories | first | default: 'info' %}
+            <div class="post-card-cat cat-{{ pcat }}">{{ pcat }}</div>
+            <h3 class="post-card-title">{{ post.title }}</h3>
+            <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+            <div class="post-card-meta">{{ post.date | date: "%-d %B %Y" }} &bull; {{ post.content | number_of_words | divided_by: 200 | plus: 1 }} menit baca</div>
+          </div>
+        </a>
+        {% endfor %}
+        {% if cat_posts.size == 0 %}
+        <p style="color:var(--c-text-3)">Belum ada artikel di kategori ini. Nantikan update terbaru!</p>
+        {% endif %}
+      </div>
+      {% include sidebar.html %}
+    </div>
+  </div>
+</section>
