@@ -4,6 +4,7 @@ date: 2026-03-30
 categories: [budaya]
 tags: [Danau Limboto, Lingkungan, Sejarah, Konservasi, Gorontalo]
 author: Hasan Ayuba
+cover: /assets/img/danau-limboto.jpg
 excerpt: "Dari 8.000 hektar dengan kedalaman 30 meter di tahun 1932, kini Danau Limboto tersisa sekitar 2.500 hektar dengan kedalaman rata-rata hanya 2,5 meter. Apa yang terjadi dan adakah harapan untuk menyelamatkannya?"
 ---
 
