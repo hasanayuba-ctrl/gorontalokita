@@ -1,0 +1,49 @@
+<aside class="sidebar">
+  <!-- Populer -->
+  <div class="sb-box">
+    <h3 class="sb-title">Paling Dibaca</h3>
+    {% assign popular = site.posts | slice: 0, 5 %}
+    {% for post in popular %}
+    <a href="{{ post.url | relative_url }}" class="sb-popular">
+      <span class="sb-pop-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+      <div>
+        <div class="sb-pop-title">{{ post.title }}</div>
+        <div class="sb-pop-cat">{{ post.categories | first | default: 'Info' }}</div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <!-- Subscribe -->
+  <div class="sb-box sb-subscribe">
+    <h3 class="sb-title">Langganan Newsletter</h3>
+    <p>Dapatkan artikel terbaru tentang wisata, kuliner, dan info Gorontalo langsung ke inbox Anda.</p>
+    <div class="sb-form">
+      <input type="email" class="sb-input" placeholder="Email Anda...">
+      <button class="sb-btn">Daftar</button>
+    </div>
+  </div>
+
+  <!-- Tags -->
+  <div class="sb-box">
+    <h3 class="sb-title">Topik Populer</h3>
+    <div class="tag-list">
+      {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
+      {% for tag in all_tags %}
+        {% if tag != "" %}
+        <span class="tag">{{ tag }}</span>
+        {% endif %}
+      {% endfor %}
+      {% if all_tags.size == 0 %}
+        <span class="tag">Hiu Paus</span>
+        <span class="tag">Pulo Cinta</span>
+        <span class="tag">Kuliner</span>
+        <span class="tag">Karawo</span>
+        <span class="tag">Ikan Nike</span>
+        <span class="tag">UMKM</span>
+        <span class="tag">Wisata Alam</span>
+        <span class="tag">Danau Limboto</span>
+      {% endif %}
+    </div>
+  </div>
+</aside>

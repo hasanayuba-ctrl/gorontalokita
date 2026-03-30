@@ -1,0 +1,52 @@
+title: GorontaloKita
+description: "Portal wisata, kuliner, budaya & info terkini dari Gorontalo — Serambi Madinah Indonesia"
+url: "" # akan diisi dengan URL GitHub Pages Anda
+baseurl: "/gorontalokita"
+
+# Author
+author:
+  name: GorontaloKita
+  email: redaksi@gorontalokita.com
+
+# Build
+markdown: kramdown
+permalink: /:categories/:title/
+paginate: 6
+paginate_path: "/halaman/:num/"
+
+# Plugins (didukung GitHub Pages)
+plugins:
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# SEO
+twitter:
+  card: summary
+lang: id
+
+# Collections
+collections:
+  categories:
+    output: true
+    permalink: /kategori/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Redaksi GorontaloKita"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Exclude
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

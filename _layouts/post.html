@@ -1,0 +1,46 @@
+---
+layout: default
+---
+<article class="post-single">
+  <div class="post-header">
+    {% assign cat = page.categories | first | default: 'info' %}
+    <span class="badge badge-{{ cat }}">{{ cat }}</span>
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta-bar">
+      <span>{{ page.author | default: site.author.name }}</span>
+      <span>&bull;</span>
+      <span>{{ page.date | date: "%-d %B %Y" }}</span>
+      <span>&bull;</span>
+      <span>{{ page.content | number_of_words | divided_by: 200 | plus: 1 }} menit baca</span>
+    </div>
+  </div>
+
+  {% if page.cover %}
+  <img src="{{ page.cover | relative_url }}" alt="{{ page.title }}" class="post-cover">
+  {% endif %}
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <!-- Share -->
+  <div class="share-bar">
+    <span>Bagikan:</span>
+    <button class="share-btn" onclick="window.open('https://wa.me/?text={{ page.title | url_encode }}%20{{ page.url | absolute_url | url_encode }}', '_blank')">WhatsApp</button>
+    <button class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}', '_blank')">Facebook</button>
+    <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}', '_blank')">Twitter</button>
+    <button class="share-btn" onclick="navigator.clipboard.writeText('{{ page.url | absolute_url }}');this.textContent='Tersalin!'">Salin Link</button>
+  </div>
+
+  <!-- Post navigation -->
+  <div class="post-nav">
+    {% if page.previous.url %}
+      <a href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title | truncate: 40 }}</a>
+    {% else %}
+      <span></span>
+    {% endif %}
+    {% if page.next.url %}
+      <a href="{{ page.next.url | relative_url }}">{{ page.next.title | truncate: 40 }} &rarr;</a>
+    {% endif %}
+  </div>
+</article>

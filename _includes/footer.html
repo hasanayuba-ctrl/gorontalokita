@@ -1,0 +1,55 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-text" style="color:#fff;font-size:20px">GorontaloKita</span><span class="logo-dot"></span></div>
+        <p>Portal informasi terlengkap seputar wisata, kuliner, budaya, dan berita terkini dari Gorontalo — Serambi Madinah Indonesia.</p>
+      </div>
+      <div>
+        <h4>Kategori</h4>
+        <a href="{{ '/kategori/wisata' | relative_url }}">Wisata Alam</a>
+        <a href="{{ '/kategori/kuliner' | relative_url }}">Kuliner Khas</a>
+        <a href="{{ '/kategori/budaya' | relative_url }}">Budaya & Tradisi</a>
+        <a href="{{ '/kategori/bisnis' | relative_url }}">Bisnis Lokal</a>
+        <a href="{{ '/kategori/info' | relative_url }}">Info & Event</a>
+      </div>
+      <div>
+        <h4>Tentang</h4>
+        <a href="{{ '/tentang' | relative_url }}">Redaksi</a>
+        <a href="mailto:{{ site.author.email }}">Kontak</a>
+        <a href="#">Pasang Iklan</a>
+        <a href="#">Kebijakan Privasi</a>
+      </div>
+      <div>
+        <h4>Ikuti Kami</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">TikTok</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} GorontaloKita. All rights reserved.</span>
+      <span>Dibuat dengan cinta dari Gorontalo</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reading bar
+window.addEventListener('scroll', function() {
+  var bar = document.getElementById('readingBar');
+  var st = window.scrollY;
+  var dh = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.width = (dh > 0 ? (st / dh) * 100 : 0) + '%';
+});
+
+// Date
+(function() {
+  var d = new Date();
+  var hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  var bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  var el = document.getElementById('currentDate');
+  if (el) el.textContent = hari[d.getDay()] + ', ' + d.getDate() + ' ' + bulan[d.getMonth()] + ' ' + d.getFullYear() + ' | Gorontalo, Sulawesi';
+})();
+</script>

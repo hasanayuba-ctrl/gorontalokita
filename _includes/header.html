@@ -1,0 +1,43 @@
+<div class="reading-bar" id="readingBar"></div>
+
+<div class="topbar">
+  <div class="container">
+    <span id="currentDate"></span>
+    <div>
+      <a href="{{ '/tentang' | relative_url }}">Tentang</a>
+      <a href="mailto:{{ site.author.email }}">Kontak</a>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container">
+    <a href="{{ '/' | relative_url }}" class="logo">
+      <span class="logo-text">GorontaloKita</span><span class="logo-dot"></span>
+      <span class="logo-sub">Serambi Madinah Online</span>
+    </a>
+    <nav class="nav">
+      <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Beranda</a>
+      <a href="{{ '/kategori/wisata' | relative_url }}">Wisata</a>
+      <a href="{{ '/kategori/kuliner' | relative_url }}">Kuliner</a>
+      <a href="{{ '/kategori/budaya' | relative_url }}">Budaya</a>
+      <a href="{{ '/kategori/bisnis' | relative_url }}">Bisnis</a>
+      <a href="{{ '/kategori/info' | relative_url }}">Info Lokal</a>
+      <button class="nav-search" onclick="document.getElementById('searchOverlay').style.display='flex'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </nav>
+    <button class="menu-toggle" onclick="document.getElementById('mobileNav').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Beranda</a>
+  <a href="{{ '/kategori/wisata' | relative_url }}">Wisata</a>
+  <a href="{{ '/kategori/kuliner' | relative_url }}">Kuliner</a>
+  <a href="{{ '/kategori/budaya' | relative_url }}">Budaya</a>
+  <a href="{{ '/kategori/bisnis' | relative_url }}">Bisnis</a>
+  <a href="{{ '/kategori/info' | relative_url }}">Info Lokal</a>
+</nav>
