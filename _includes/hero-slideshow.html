@@ -1,0 +1,98 @@
+<section class="hero-slideshow">
+  <div class="slides">
+    {% if site.slideshow %}
+      {% for slide in site.slideshow %}
+      <div class="slide {% if forloop.first %}active{% endif %}" style="background-image:url('{{ slide.image | relative_url }}')">
+        <div class="slide-overlay">
+          <div class="container">
+            {% if slide.badge %}<span class="badge badge-wisata">{{ slide.badge }}</span>{% endif %}
+            <h2>{{ slide.title }}</h2>
+            {% if slide.subtitle %}<p>{{ slide.subtitle }}</p>{% endif %}
+            {% if slide.link %}<a href="{{ slide.link | relative_url }}" class="slide-btn">Baca Selengkapnya</a>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="slide active" style="background-image:url('{{ '/assets/img/slide-1.jpg' | relative_url }}')">
+        <div class="slide-overlay">
+          <div class="container">
+            <span class="badge badge-wisata">Wisata</span>
+            <h2>Jelajahi Keindahan Alam Gorontalo</h2>
+            <p>Dari hiu paus Botubarani hingga Pulo Cinta, Gorontalo menyimpan pesona yang tak terlupakan</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide" style="background-image:url('{{ '/assets/img/slide-2.jpg' | relative_url }}')">
+        <div class="slide-overlay">
+          <div class="container">
+            <span class="badge badge-kuliner">Kuliner</span>
+            <h2>Cita Rasa Khas Gorontalo</h2>
+            <p>Ayam Iloni, Bilenthango, Perkedel Nike — kuliner unik yang hanya ada di sini</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide" style="background-image:url('{{ '/assets/img/slide-3.jpg' | relative_url }}')">
+        <div class="slide-overlay">
+          <div class="container">
+            <span class="badge badge-budaya">Budaya</span>
+            <h2>Karawo: Warisan Budaya Mendunia</h2>
+            <p>Seni sulam kerawang khas Gorontalo yang diakui di kancah nasional</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  <div class="slide-dots">
+    {% if site.slideshow %}
+      {% for slide in site.slideshow %}
+      <button class="dot {% if forloop.first %}active{% endif %}" onclick="goSlide({{ forloop.index0 }})"></button>
+      {% endfor %}
+    {% else %}
+      <button class="dot active" onclick="goSlide(0)"></button>
+      <button class="dot" onclick="goSlide(1)"></button>
+      <button class="dot" onclick="goSlide(2)"></button>
+    {% endif %}
+  </div>
+  <button class="slide-arrow slide-prev" onclick="changeSlide(-1)">&#10094;</button>
+  <button class="slide-arrow slide-next" onclick="changeSlide(1)">&#10095;</button>
+</section>
+
+<script>
+var slideIndex = 0;
+var slides = document.querySelectorAll('.slide');
+var dots = document.querySelectorAll('.dot');
+var slideTimer;
+
+function showSlide(n) {
+  slideIndex = n;
+  if (slideIndex >= slides.length) slideIndex = 0;
+  if (slideIndex < 0) slideIndex = slides.length - 1;
+  for (var i = 0; i < slides.length; i++) {
+    slides[i].classList.remove('active');
+    dots[i].classList.remove('active');
+  }
+  slides[slideIndex].classList.add('active');
+  dots[slideIndex].classList.add('active');
+}
+
+function changeSlide(dir) {
+  clearInterval(slideTimer);
+  showSlide(slideIndex + dir);
+  startTimer();
+}
+
+function goSlide(n) {
+  clearInterval(slideTimer);
+  showSlide(n);
+  startTimer();
+}
+
+function startTimer() {
+  slideTimer = setInterval(function() {
+    showSlide(slideIndex + 1);
+  }, 5000);
+}
+
+startTimer();
+</script>
